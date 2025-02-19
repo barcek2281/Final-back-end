@@ -1,31 +1,27 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const { default: mongoose } = require("mongoose");
-const user = require("./model/user.js")
+const bodyParser = require("body-parser");
+const path = require("path");
 
 
 dotenv.config();
-app = express();
+const app = express();
 
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI)
 
+// for css and js script
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/", (req, res) => {
-    res.send("hello, world!");
-})
-
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 // routes by adil
-
-const express = require('express');
-const app = express();
-
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
@@ -38,4 +34,7 @@ app.use('/posts', postRoutes);
 // routes end by adil
 
 
-app.listen(PORT, ()=>console.log(`Server running: http://localhost:${PORT}`))
+app.listen(PORT, 
+    () => {
+        console.log(`Server running: http://localhost:${PORT}`)
+    })
