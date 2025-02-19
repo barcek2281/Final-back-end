@@ -1,29 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-// Создать пост
-router.post('/', (req, res) => {
-    res.send('Post created');
+// Получить профиль пользователя
+router.get('/profile', (req, res) => {
+    res.send('User profile data');
 });
 
-// Получить все посты
-router.get('/', (req, res) => {
-    res.send('List of all posts');
-});
-
-// Получить пост по ID
-router.get('/:id', (req, res) => {
-    res.send(`Post with ID ${req.params.id}`);
-});
-
-// Обновить пост
-router.put('/:id', (req, res) => {
-    res.send(`Post with ID ${req.params.id} updated`);
-});
-
-// Удалить пост
-router.delete('/:id', (req, res) => {
-    res.send(`Post with ID ${req.params.id} deleted`);
+// Обновить профиль пользователя
+router.put('/profile', (req, res) => {
+    res.send('User profile updated');
 });
 
 module.exports = router;
+
