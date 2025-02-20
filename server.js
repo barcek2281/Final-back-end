@@ -2,12 +2,16 @@ const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const path = require("path");
-
+const { default: mongoose } = require("mongoose");
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 
-const app = express();
+const Post = require('./model/Post'); // may not work
+const connectDB = require("./config/db");
 
+const app = express();
+const MONGO_URI = process.env.MONGO_URI;
+mongoose.connect(MONGO_URI)
 // Middleware
 app.use("/public", express.static(path.join(__dirname, "public")));
 
@@ -16,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-2
+
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
@@ -25,12 +29,7 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
-/*
-// Подключение к базе данных (временно отключено)
-// const connectDB = require("./config/db");
-// connectDB(); 
 
-// const Post = require('./model/Post'); // Import Post model
 
 app.get("/", async (req, res) => {
     try {
@@ -41,12 +40,9 @@ app.get("/", async (req, res) => {
         res.status(500).send("Server Error");
     }
 });
-*/
 
-// Временная заглушка
-app.get("/", (req, res) => {
-    res.render("index", { posts: [] }); // Отдаем пустой список постов
-});
+
+
 
 // Запуск сервера
 app.listen(PORT, () => {
