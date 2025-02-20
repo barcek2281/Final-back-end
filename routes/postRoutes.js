@@ -1,29 +1,85 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const Post = require("../model/Post");
 
-// Создать пост
-router.post('/', (req, res) => {
-    res.send('Post created');
+// Create a post
+router.post("/", async (req, res) => {
+    try {
+        const newPost = new Post({
+            title: req.body.title,
+            content: req.body.content
+        });
+        await newPost.save();
+        res.redirect("/");
+    } catch (err) {
+        res.status(500).send("Error creating post");
+    }
 });
 
-// Получить все посты
-router.get('/', (req, res) => {
-    res.send('List of all posts');
+// Get all posts
+router.get("/", async (req, res) => {
+    try {
+        const posts = await Post.find();
+        res.json(posts);
+    } catch (err) {
+        res.status(500).send("Error fetching posts");
+    }
 });
 
-// Получить пост по ID
-router.get('/:id', (req, res) => {
-    res.send(`Post with ID ${req.params.id}`);
+router.get("/:id", async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).send("Post not found");
+        }
+        res.render("postDetail", { post });
+    } catch (err) {
+        res.status(500).send("Error fetching post");
+    }
 });
 
-// Обновить пост
-router.put('/:id', (req, res) => {
-    res.send(`Post with ID ${req.params.id} updated`);
+/* Get a single post by ID
+router.get("/:id", async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).send("Post not found");
+        }
+        res.json(post);
+    } catch (err) {
+        res.status(500).send("Error fetching post");
+    }
+});
+*/
+
+// Update a post
+router.put("/:id", async (req, res) => {
+    try {
+        const updatedPost = await Post.findByIdAndUpdate(
+            req.params.id,
+            { title: req.body.title, content: req.body.content },
+            { new: true }
+        );
+        if (!updatedPost) {
+            return res.status(404).send("Post not found");
+        }
+        res.json(updatedPost);
+    } catch (err) {
+        res.status(500).send("Error updating post");
+    }
 });
 
-// Удалить пост
-router.delete('/:id', (req, res) => {
-    res.send(`Post with ID ${req.params.id} deleted`);
+// Delete a post
+router.delete("/:id", async (req, res) => {
+    try {
+        const deletedPost = await Post.findByIdAndDelete(req.params.id);
+        if (!deletedPost) {
+            return res.status(404).send("Post not found");
+        }
+        res.send("Post deleted successfully");
+    } catch (err) {
+        res.status(500).send("Error deleting post");
+    }
 });
 
 module.exports = router;

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= post.title %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">GamePosts</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="post-detail">
+            <h1><%= post.title %></h1>
+            <p><%= post.content %></p>
+        </article>
+    </main>
+
+    <footer>
+        <p>© 2025 GamePosts. All rights reserved.</p>
+    </footer>
+</body>
+</html>
