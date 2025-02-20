@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registraion</title>
+    <title>Registration</title>
+    <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
-    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/"><img src="/public/images/logo.png" alt="GamePosts Logo"></a>
+                <a href="/">GameMoon</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-box">
+            <h2>Register</h2>
+            <form action="/register" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="/auth/login">Login</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 GameMoon. All rights reserved.</p>
+    </footer>
 </body>
 </html>

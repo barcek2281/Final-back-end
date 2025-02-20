@@ -8,22 +8,27 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="navbar">
             <div class="logo">
-                <a href="/">GamePosts</a>
+                <a href="/"><img src="/public/images/logo.png" alt="GamePosts Logo"></a>
+                <a href="/">GameMoon</a>
+            </div>
+            <div class="nav-links">
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main class="post-container">
         <article class="post-detail">
-            <h1><%= post.title %></h1>
-            <p><%= post.content %></p>
+            <h1 class="post-title"><%= post.title %></h1>
+            <p class="post-content"><%= post.content %></p>
         </article>
     </main>
 
-    <footer>
-        <p>© 2025 GamePosts. All rights reserved.</p>
+    <footer class="footer">
+        <p>© 2025 GameMoon. All rights reserved.</p>
     </footer>
 </body>
 </html>
