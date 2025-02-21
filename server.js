@@ -7,11 +7,12 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 const Post = require('./model/Post'); // may not work
-const connectDB = require("./config/db");
 
 const app = express();
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI)
+
+
 // Middleware
 app.use("/public", express.static(path.join(__dirname, "public")));
 
