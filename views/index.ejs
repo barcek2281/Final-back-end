@@ -3,9 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main page</title>
+    <title>GameMoon</title>
+    <link rel="stylesheet" href="/public/style.css">
+
+    
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/"><img src="/public/images/logo.png" alt="GamePosts Logo"></a>
+                <a href="/">GameMoon</a>
+            </div>
+            <div class="nav-links">
+                <a href="/auth/login">Login</a>
+                <a href="/auth/register">Register</a>
+            </div>
+        </nav>
+    </header>
     
+    <main>
+        <section class="posts-container">
+            <h1>Latest Game Posts</h1>
+            <div class="posts-grid">
+                <% if (posts.length > 0) { %>
+                    <% posts.forEach(post => { %>
+                        <div class="post-card">
+                            <h2><%= post.title %></h2>
+                            <p><%= post.content.substring(0, 150) %>...</p>
+                            <a href="/posts/<%= post._id %>" class="read-more">Read More</a>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>No posts available yet.</p>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 GameMoon. All rights reserved.</p>
+    </footer>
 </body>
 </html>

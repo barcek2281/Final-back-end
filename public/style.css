@@ -1,0 +1,207 @@
+/* General Styles */
+body {
+    background-color: #fff4f4;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    
+    cursor: url('/public/images/cursor.png'), auto;
+
+
+    background-position: center; /* Центрирование */
+    background-repeat: no-repeat; /* Без повторений */
+    height: 100vh; /* Минимальная высота на весь экран */
+    background: url('/public/images/background.png') no-repeat center center fixed;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+}
+/* Импорт ретро-шрифта */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Обновляем стиль заголовков */
+h1, h2, .logo a {
+    font-family: 'Press Start 2P', cursive;
+}
+.login-box {
+    background: rgba(0, 0, 0, 0.8); /* Чёрный с прозрачностью */
+    padding: 20px;
+    color: white;
+}
+
+button, a {
+    cursor: url('/public/images/cursor.png') 16 16, auto;
+}
+
+.logo img {
+    width: 80px; /* или любое другое значение */
+
+    height: auto; /* Сохранение пропорций */
+    display: block; /* Убираем возможные отступы */
+}
+.auth-box {
+    background: rgba(0, 0, 0, 0.8); /* Черный фон с небольшой прозрачностью */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    color: white; /* Белый текст */
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+/* Кнопки с неоновым эффектом */
+.read-more, .btn {
+    position: relative;
+    background-color: rgb(255, 71, 71);
+    color: #121212;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover, .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgb(255, 83, 31);
+}
+
+/* Анимация для карточек постов */
+.post-card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Дополнительные ретро-детали */
+nav, footer {
+    border-bottom: 2px solid rgb(102, 0, 133);
+}
+
+/* Navbar */
+nav {
+    background-color: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+nav .logo a {
+    color: #ffcc00;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ffcc00;
+}
+
+.post-detail {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+}
+/* Main Section */
+.posts-container {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+/* Post Grid */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Post Card */
+.post-card {
+    background: #111;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.post-card:hover {
+    transform: scale(1.05);
+}
+
+.post-card h2 {
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.post-card p {
+    color: #b0b0b0;
+}
+
+.post-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #ffcc00;
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.read-more:hover {
+    background-color: #e6b800;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #111; /* Цвет фона, если нужен */
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #111;
+}
+
+
+
+
