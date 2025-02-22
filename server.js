@@ -82,8 +82,6 @@ app.get("/", async (req, res) => {
     }
 });
 
-const Comment = require("./model/comment"); // Добавляем импорт модели
-
 app.get("/changelog", async (req, res) => {
     const updates = [
         { title: "Version 1.2", description: "Added new features and fixed bugs." },
