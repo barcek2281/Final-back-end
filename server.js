@@ -53,6 +53,7 @@ app.set("views", path.join(__dirname, "views"));
 
 // Импорт моделей
 const Post = require("./model/Post");
+const Comment = require("./model/comment");
 
 // Подключение маршрутов
 const authRoutes = require("./routes/authRoutes");
@@ -99,6 +100,22 @@ app.get("/changelog", async (req, res) => {
     }
 });
 
+// Страница изменений (changelog) с комментариями
+app.get("/changelog", async (req, res) => {
+    const updates = [
+        { title: "Version 1.2", description: "Added new features and fixed bugs." },
+        { title: "Version 1.1", description: "Improved performance and security." },
+        { title: "Version 1.0", description: "Initial release." }
+    ];
+
+    try {
+        const comments = await Comment.find().sort({ createdAt: -1 });
+        res.render("changelog", { updates, comments, user: req.user || null });
+    } catch (err) {
+        console.error("❌ Ошибка загрузки комментариев:", err);
+        res.status(500).send("Ошибка сервера");
+    }
+});
 
 // Статические страницы
 app.get("/about", (req, res) => {
