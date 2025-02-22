@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get("/register", async (req, res) => {
-    res.render("register");
+    res.render("register"); // user автоматически доступен через res.locals
 });
 
 // Регистрация
@@ -11,7 +11,7 @@ router.post('/register', (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
-    res.render("login");
+    res.render("login"); // user автоматически доступен через res.locals
 });
 
 // Вход в систему

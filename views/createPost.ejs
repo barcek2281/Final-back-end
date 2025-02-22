@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать пост</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+    <h1>Создать новый пост</h1>
+    <form action="/posts/create" method="POST">
+        <label>Заголовок:</label>
+        <input type="text" name="title" required>
+
+        <label>Описание:</label>
+        <textarea name="description" required></textarea>
+
+        <label>Автор:</label>
+        <input type="text" name="author" value="<%= user ? user.username : 'Аноним' %>" readonly>
+
+        <button type="submit">Опубликовать</button>
+    </form>
+
+    <a href="/">Вернуться назад</a>
+</body>
+</html>

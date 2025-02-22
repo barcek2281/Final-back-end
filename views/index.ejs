@@ -10,17 +10,29 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="navbar">
             <div class="logo">
-                <a href="/"><img src="/public/images/logo.png" alt="GamePosts Logo"></a>
+                <a href="/"><img src="/public/images/logo.png" alt="GameMoon Logo"></a>
                 <a href="/">GameMoon</a>
             </div>
             <div class="nav-links">
-                <a href="/auth/login">Login</a>
-                <a href="/auth/register">Register</a>
+                <a href="/about">About</a>
+                <a href="/changelog">Changelog</a>
+                <a href="/download">Download</a>
+                <a href="/index">News</a>
+    
+                <% if (user) { %>
+                    <a href="/users/profile">Profile</a>
+                    <a href="/auth/logout">Logout</a>
+                <% } else { %>
+                    <a href="/auth/login">Login</a>
+                    <a href="/auth/register">Register</a>
+                <% } %>
             </div>
         </nav>
     </header>
+    
+
     
     <main>
         <section class="posts-container">

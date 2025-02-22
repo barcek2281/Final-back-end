@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= post.title %></title>
+    <title>Download</title>
     <link rel="stylesheet" href="/public/style.css">
-
 </head>
 <body>
     <header>
@@ -30,17 +29,21 @@
             </div>
         </nav>
     </header>
-    
-    
+    <div class="about-container">
+        <div class="about-content">
+        <h1>Download GameMoon</h1>
+            <p>Choose your platform and download the game.</p>
+            <p>Windows</p>
+            <a href="/public/downloads/game-windows.exe" class="btn">Download for Windows</a>
+            <p>MacOs</p>
+            <a href="/public/downloads/game-mac.dmg" class="btn">Download for macOS</a>
+            <p>Linux</p>
+            <a href="/public/downloads/game-linux.tar.gz" class="btn">Download for Linux</a>
+        </div>
+    </div>
 
-    <main class="post-container">
-        <article class="post-detail">
-            <h1 class="post-title"><%= post.title %></h1>
-            <p class="post-content"><%= post.content %></p>
-        </article>
-    </main>
 
-    <footer class="footer">
+    <footer>
         <p>© 2025 GameMoon. All rights reserved.</p>
     </footer>
 </body>
