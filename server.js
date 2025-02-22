@@ -34,7 +34,7 @@ app.use("/posts", postRoutes);
 
 app.get("/", async (req, res) => {
     try {
-        const posts = await Post.find().sort({ createdAt: -1 }); // Get posts, latest first
+        const posts = await Post.find().sort({ createdAt: -1 }); 
         res.render("index", { posts });
     } catch (err) {
         console.error(err);
@@ -43,9 +43,7 @@ app.get("/", async (req, res) => {
 });
 
 
-
-
 // Запуск сервера
 app.listen(PORT, () => {
-    console.log(`Сервер запущен на http://localhost:${PORT}`);
+    console.log(`server running on port: http://localhost:${PORT}`);
 });
