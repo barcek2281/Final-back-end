@@ -213,8 +213,9 @@ footer {
 .about-content {
     background: rgba(0, 0, 0, 0.6); /* Черный фон с прозрачностью */
     padding: 20px; /* Отступы внутри блока */
-    border-radius: 10px; /* Скругленные углы */
+
     max-width: 80%; /* Максимальная ширина блока */
+    height: 100%;
 }
 .content {
     flex: 1; /* Растягивает контент, заполняя доступное пространство */
@@ -233,6 +234,7 @@ footer {
     border-radius: 10px;
     max-width: 80%;
     width: 100%;
+    height: 100%;
 }
 
 .update, .comment {

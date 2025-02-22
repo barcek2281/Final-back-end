@@ -13,6 +13,7 @@
                 <a href="/"><img src="/public/images/logo.png" alt="GameMoon Logo"></a>
                 <a href="/">GameMoon</a>
             </div>
+
             <div class="nav-links">
                 <a href="/about">About</a>
                 <a href="/changelog">Changelog</a>
@@ -26,6 +27,7 @@
                     <a href="/auth/login">Login</a>
                     <a href="/auth/register">Register</a>
                 <% } %>
+                
             </div>
         </nav>
     </header>
@@ -42,20 +44,7 @@
                 </div>
             <% }) %>
         
-            <h2>Comments</h2>
-        
-            <form action="/changelog/comment" method="POST">
-                <textarea name="comment" required placeholder="Write your comment..."></textarea>
-                <button type="submit">Post Comment</button>
-            </form>
-        
-            <% comments.forEach(comment => { %>
-                <div class="comment">
-                    <strong><%= comment.author || "Anonim" %>:</strong>
-                    <p><%= comment.text %></p>
-                    <small><%= comment.date %></small>
-                </div>
-            <% }) %>
+
         </div>
     </main>
     

@@ -53,7 +53,6 @@ app.set("views", path.join(__dirname, "views"));
 
 // Импорт моделей
 const Post = require("./model/Post");
-const Comment = require("./model/comment");
 
 // Подключение маршрутов
 const authRoutes = require("./routes/authRoutes");
@@ -64,18 +63,26 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
+const commentsRoutes = require("./routes/comments");
+app.use("/", commentsRoutes);
+
+
 // Главная страница с постами
 app.get("/", async (req, res) => {
     try {
         const posts = await Post.find().sort({ createdAt: -1 });
+        if (!posts.length) {
+            console.warn("⚠️ Постов нет, отображаем заглушку.");
+        }
         res.render("index", { posts, user: req.user || null });
     } catch (err) {
-        console.error("❌ Ошибка загрузки постов:", err);
-        res.status(500).send("Ошибка сервера");
+        console.error("❌ Ошибка загрузки постов:", err.message);
+        res.status(500).render("error", { message: "Ошибка сервера. Попробуйте позже." });
     }
 });
 
-// Страница изменений (changelog) с комментариями
+const Comment = require("./model/comment"); // Добавляем импорт модели
+
 app.get("/changelog", async (req, res) => {
     const updates = [
         { title: "Version 1.2", description: "Added new features and fixed bugs." },
@@ -91,6 +98,7 @@ app.get("/changelog", async (req, res) => {
         res.status(500).send("Ошибка сервера");
     }
 });
+
 
 // Статические страницы
 app.get("/about", (req, res) => {
