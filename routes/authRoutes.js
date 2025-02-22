@@ -54,11 +54,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
-<<<<<<< HEAD
     res.render("login", {error: null});
-=======
-    res.render("login"); // user автоматически доступен через res.locals
->>>>>>> 040906f (desihn2)
 });
 
 // Вход в систему
