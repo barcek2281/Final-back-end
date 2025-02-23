@@ -39,12 +39,16 @@ app.set("views", path.join(__dirname, "views"));
 // Подключение маршрутов
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
-const postRoutes = require("./routes/postRoutes");
+const adminPostRouter = require("./routes/adminPostRouter");
+const postsRouter = require("./routes/postsRoutes");
+const commentRouter = require("./routes/comments")
 const mainPage = require("./routes/mainPage");
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
-app.use("/posts", postRoutes);
+app.use("/admin", adminPostRouter);
+app.use("/posts", postsRouter);
+app.use("/posts", commentRouter);
 app.use("/", mainPage);
 
 // Запуск сервера
