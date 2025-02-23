@@ -6,57 +6,70 @@ const middlewareAdmin = require("../middleware/middlewareAdmin");
 
 
 router.get("/", middlewareAdmin, async (req, res) => {
-    res.render("createPost", {user: req.user, error:null})
+    const posts = await Post.find().sort({ createdAt: -1 });
+    res.render("createPost", {user: req.user, posts: posts, error:null})
 });
 
 router.post("/", middlewareAdmin,  async (req, res) => {
     try {
         const { title, content } = req.body;
+        const posts = await Post.find().sort({ createdAt: -1 });
         if (!title || !content) {
-            return res.render("createPost", {user:req.user, error: "Title and content are required" });
+            return res.render("createPost", {user:req.user, posts:posts,  error: "Title and content are required" });
         }
-        const newPost = new Post({title,
-                                content,    
-                                author: req.user.login});
+        const newPost = new Post({  title,
+                                    content,    
+                                    author: req.user.login});
         await newPost.save();
         
         res.redirect("/")
     } catch (err) {
-        console.error("❌ Ошибка создания поста:", err);
-        res.status(500).json({ error: "Server error" });
+        console.error("Ошибка создания поста:", err);
+        return res.render("createPost", {user:req.user, posts:posts,  error: err});
     }
 });
 
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", middlewareAdmin, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         if (!post) {
-            return res.status(404).json({ error: "Post not found" });
+            return res.render("post", {post: null, error:"cannot find post!"})
         }
-        res.json(post);
+        res.render("post", {post: post, error:null})
     } catch (err) {
-        console.error("❌ Ошибка получения поста:", err);
+        console.error(" Ошибка получения поста:", err);
         res.status(500).json({ error: "Server error" });
     }
 });
 
-router.put("/:id", middleware, async (req, res) => {
+router.post("/:id", middlewareAdmin, async (req, res) => {
     try {
-        const { title, content } = req.body;
-        const updatedPost = await Post.findByIdAndUpdate(
-            req.params.id,
-            { title, content },
-            { new: true, runValidators: true }
-        );
+        const del = req.query._method;
+        if (del === "DELETE") {
+            const deletedPost = await Post.findByIdAndDelete(
+                req.params.id,
+            );
 
-        if (!updatedPost) {
-            return res.status(404).json({ error: "Post not found" });
+            if (!deletedPost) {
+                return res.render("post", {post: null, error:"cannot find post!"})
+            }
+            console.log(`post deleted: ${deletedPost.title}`);
+        }else{
+            const { title, content } = req.body;
+            const updatedPost = await Post.findByIdAndUpdate(
+                req.params.id,
+                { title, content },
+            );
+
+            if (!updatedPost) {
+                return res.render("post", {post: null, error:"cannot find post!"})
+            }
+            console.log(`post updated: ${updatedPost.title}`);
         }
-        console.log(`✅ Пост обновлен: ${updatedPost.title}`);
-        res.json(updatedPost);
+        res.redirect(".")
     } catch (err) {
-        console.error("❌ Ошибка обновления поста:", err);
+        console.error(" Ошибка обновления поста:", err);
         res.status(500).json({ error: "Server error" });
     }
 });
@@ -67,10 +80,10 @@ router.delete("/:id", middleware, async (req, res) => {
         if (!deletedPost) {
             return res.status(404).json({ error: "Post not found" });
         }
-        console.log(`✅ Пост удален: ${deletedPost.title}`);
+        console.log(`Пост удален: ${deletedPost.title}`);
         res.json({ message: "Post deleted successfully" });
     } catch (err) {
-        console.error("❌ Ошибка удаления поста:", err);
+        console.error(" Ошибка удаления поста:", err);
         res.status(500).json({ error: "Server error" });
     }
 });

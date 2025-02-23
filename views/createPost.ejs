@@ -4,24 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создать пост</title>
-    <link rel="stylesheet" href="/public/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-top: 40px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .post-list {
+            margin-top: 40px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .post-item {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .post-item h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .post-item p {
+            color: #555;
+            font-size: 16px;
+        }
+
+        .post-item small {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .error-message {
+            color: red;
+            background-color: #fdd;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
+
     <h1>Создать новый пост</h1>
+
     <% if (error) { %>
-        <p><%= error %></p>
-    <%}%>
+        <div class="error-message">
+            <p><%= error %></p>
+        </div>
+    <% } %>
+
+    <!-- Create Post Form -->
     <form action="/posts/" method="POST">
-        <label>Заголовок:</label>
+        <label for="title">Заголовок:</label>
         <input type="text" name="title" id="title" required>
 
-        <label>Описание:</label>
+        <label for="content">Описание:</label>
         <textarea name="content" id="content" required></textarea>
 
-        <label>Author: <%= user ? user.login : 'Аноним' %></label>
+        <label>Автор: <%= user ? user.login : 'Аноним' %></label>
         <button type="submit">Опубликовать</button>
     </form>
 
     <a href="/">Вернуться назад</a>
+
+    <hr>
+
+    <h2>Все посты</h2>
+    
+    <% if (posts && posts.length > 0) { %>
+        <ul class="post-list">
+            <% posts.forEach(post => { %>
+                <li class="post-item">
+                    <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
+                    <p><%= post.content %></p>
+                    <small>Автор: <%= post.author ? post.author.login : 'Аноним' %> | Дата: <%= post.createdAt.toLocaleString() %></small>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>Нет постов для отображения.</p>
+    <% } %>
+
 </body>
 </html>
