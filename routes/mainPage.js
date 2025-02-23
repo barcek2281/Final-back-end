@@ -43,6 +43,10 @@ router.get("/index", (req, res) => {
     res.redirect("/");
 });
 
+router.get("/download-game", (req, res) => {
+    res.render("download-game", { user: req.user || null });
+});
+
 
 
 module.exports = router;

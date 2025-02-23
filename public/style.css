@@ -10,7 +10,7 @@ body {
     /* Упрощаем background */
     background: #000000 url('/public/images/background.png') no-repeat center center fixed;
     background-size: cover;
-
+    background-color: #121212;
     display: flex;
     flex-direction: column;
     height: 100vh; /* Минимальная высота на весь экран */
@@ -182,13 +182,7 @@ nav .logo a {
     background-color: #e6b800;
 }
 
-footer {
-    width: 100%;
-    background-color: #111;
-    text-align: center;
-    padding: 10px 0;
-    
-}
+
 
 
 .navbar {
@@ -200,23 +194,39 @@ footer {
 }
 
 
-
-.about-container {
+.bout-container {
     display: flex;
     flex-direction: column;
     align-items: center; /* Центрирует по горизонтали */
     height: 100vh; /* Высота на весь экран */
     text-align: center; /* Выравнивает текст по центру */
     color: white; /* Сделает текст белым для лучшей читаемости */
+    width: 40%; /* Максимальная ширина блока */
 }
 
-.about-content {
+.bout-content {
     background: rgba(0, 0, 0, 0.6); /* Черный фон с прозрачностью */
     padding: 20px; /* Отступы внутри блока */
 
-    max-width: 80%; /* Максимальная ширина блока */
+    width: 40%; /* Максимальная ширина блока */
     height: 100%;
 }
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    flex: 1; /* Позволяет контейнеру занимать все доступное пространство */
+    justify-content: center; /* Центрирует содержимое по вертикали */
+}
+
+.about-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    max-width: 80%;
+}
+
 .content {
     flex: 1; /* Растягивает контент, заполняя доступное пространство */
     display: flex;
@@ -244,7 +254,7 @@ footer {
     border-radius: 5px;
 }
 html, body {
-    height: 100%; /* Вся высота экрана */
+    height: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -253,4 +263,89 @@ html, body {
 
 main {
     flex: 1; /* Растягивает основное содержимое, чтобы footer ушел вниз */
+}
+/* Общие стили */
+
+
+/* Центрируем блок */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Карточка логина */
+.login-card {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+/* Поля ввода */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.login-input {
+    width: calc(100% - 10px); /* Уменьшаем ширину */
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #2c2c2c;
+    color: #fff;
+}
+
+
+/* Кнопка */
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff5722;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #e64a19;
+}
+
+/* Ошибки */
+.error-message {
+    background-color: #ff3b3b;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* Ссылка на регистрацию */
+.register-link {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #ff9800;
+}
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: auto; /* Футер всегда прижат к низу */
 }
