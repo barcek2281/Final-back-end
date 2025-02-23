@@ -9,7 +9,7 @@ const User = require("../model/user")
 
 const generateToken = (user) => {
     return jwt.sign(
-        { id: user.id, email: user.email }, // payload
+        { id: user.id, login: user.login }, // payload
         process.env.JWT_SECRET,             // секретный ключ
         { expiresIn: process.env.JWT_EXPIRES_IN } // время жизни токена
     );
@@ -49,7 +49,7 @@ router.post('/register', async (req, res) => {
 
     await user.save();   
     const token = generateToken(user);
-    res.cookie('token', token, { httpOnly: true, secure: true });
+    res.cookie('token', token);
     res.redirect("/")
 });
 
@@ -71,8 +71,14 @@ router.post('/login', async (req, res) => {
     }
 
     const token = generateToken(user);
-    res.cookie('token', token, { httpOnly: true, secure: true });
+    res.cookie('token', token);
     res.redirect("/");
+});
+
+// COOKIE DESTROY
+router.get("/logout", async (req, res) => {
+    res.clearCookie("token")
+    res.redirect("/")
 });
 
 module.exports = router;

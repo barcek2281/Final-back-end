@@ -1,37 +1,32 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../model/Post");
+const middleware = require("../middleware/middleware");
 
-// ✅ Создание поста (POST /posts)
-router.post("/", async (req, res) => {
+
+router.get("/", middleware, async (req, res) => {
+    res.render("createPost", {user: req.user, error:null})
+});
+
+router.post("/", middleware,  async (req, res) => {
     try {
         const { title, content } = req.body;
         if (!title || !content) {
-            return res.status(400).json({ error: "Title and content are required" });
+            return res.render("createPost", {user:req.user, error: "Title and content are required" });
         }
-
-        const newPost = new Post({ title, content });
+        const newPost = new Post({title,
+                                content,    
+                                author: req.user.login});
         await newPost.save();
-        console.log(`✅ Новый пост создан: ${title}`);
-        res.status(201).json(newPost);
+        
+        res.redirect("/")
     } catch (err) {
         console.error("❌ Ошибка создания поста:", err);
         res.status(500).json({ error: "Server error" });
     }
 });
 
-// ✅ Получение всех постов (GET /posts)
-router.get("/", async (req, res) => {
-    try {
-        const posts = await Post.find().sort({ createdAt: -1 });
-        res.json(posts);
-    } catch (err) {
-        console.error("❌ Ошибка получения постов:", err);
-        res.status(500).json({ error: "Server error" });
-    }
-});
 
-// ✅ Получение одного поста по ID (GET /posts/:id)
 router.get("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
@@ -45,8 +40,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-// ✅ Обновление поста (PUT /posts/:id)
-router.put("/:id", async (req, res) => {
+router.put("/:id", middleware, async (req, res) => {
     try {
         const { title, content } = req.body;
         const updatedPost = await Post.findByIdAndUpdate(
@@ -66,8 +60,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-// ✅ Удаление поста (DELETE /posts/:id)
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", middleware, async (req, res) => {
     try {
         const deletedPost = await Post.findByIdAndDelete(req.params.id);
         if (!deletedPost) {
