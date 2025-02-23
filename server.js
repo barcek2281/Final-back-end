@@ -40,11 +40,13 @@ app.set("views", path.join(__dirname, "views"));
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
+const commentRouter = require("./routes/comments")
 const mainPage = require("./routes/mainPage");
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
+app.use("/posts", commentRouter);
 app.use("/", mainPage);
 
 // Запуск сервера

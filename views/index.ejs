@@ -31,28 +31,6 @@
         </nav>
     </header>
     
-
-    
-    <main>
-        <section class="posts-container">
-            <h1>Latest Game Posts</h1>
-            <div class="posts-grid">
-                <% if (posts.length > 0) { %>
-                    <% posts.forEach(post => { %>
-                        <div class="post-card">
-                            <h2><%= post.title %></h2>
-                            <p><%= post.content.substring(0, 150) %>...</p>
-                            <a href="/posts/<%= post._id %>" class="read-more">Read More</a>
-                        </div>
-                    <% }) %>
-                <% } else { %>
-                    <p>No posts available yet.</p>
-                <% } %>
-            </div>
-        </section>
-    </main>
-
-    
     <main>
         <div class="about-container">
             <div class="about-content">
@@ -69,7 +47,7 @@
                                     <!-- Comments Section Inside Each Post -->
                                     <h3>Comments</h3>
                                     <form action="/posts/<%= post._id %>/comment" method="POST">
-                                        <textarea name="comment" required placeholder="Write your comment..."></textarea>
+                                        <textarea name="text" id="text" required placeholder="Write your comment..."></textarea>
                                         <button type="submit">Post Comment</button>
                                     </form>
                                     

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const commentSchema = new mongoose.Schema({
     author: { type: String, default: "Anonim" },
     text: { type: String, required: true },
-    post_id: { type: Schema.Types.ObjectId, ref: 'Post' , required: true}
+    post_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' , required: true}
 }, { timestamps: true }); // Enables createdAt and updatedAt
 
 // Create index on createdAt for faster sorting

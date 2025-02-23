@@ -1,32 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../model/Post'); // ✅ Исправлен путь
+const Post = require('../model/Post');
+const Comment = require("../model/comment")
+const middleware = require("../middleware/middleware");
 
 // Добавление комментария
-router.post('/posts/:id/comment', async (req, res) => {
+router.post('/:id/comment',middleware,  async (req, res) => {
     try {
-        console.log("Post ID:", req.params.id);
-        console.log("User:", req.user);
-        console.log("Comment text:", req.body.comment);
-
         const post = await Post.findById(req.params.id);
         if (!post) {
-            return res.status(404).send('Post not found');
+            console.log("lol")
+            return res.redirect("/")
         }
+        let user = req.user;
+        const post_id = req.params.id;
 
-        const author = req.user && req.user.username ? req.user.username : "Anonim";
+        const comment = new Comment({
+            author: user.login,
+            text: req.body.text,
+            post_id: post_id
+        })
 
-        const comment = {
-            author: author,
-            text: req.body.comment,
-            date: new Date().toLocaleString(),
-        };
-
-        if (!post.comments) post.comments = []; // ✅ Гарантируем, что массив есть
-        post.comments.push(comment);
-        await post.save();
-
-        res.redirect('/index'); // ✅ Или сделай редирект на страницу поста
+        await comment.save();
+        res.redirect("/")
     } catch (error) {
         console.error("❌ Ошибка при добавлении комментария:", error);
         res.status(500).send('Server Error');
