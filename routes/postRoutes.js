@@ -2,13 +2,14 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../model/Post");
 const middleware = require("../middleware/middleware");
+const middlewareAdmin = require("../middleware/middlewareAdmin");
 
 
-router.get("/", middleware, async (req, res) => {
+router.get("/", middlewareAdmin, async (req, res) => {
     res.render("createPost", {user: req.user, error:null})
 });
 
-router.post("/", middleware,  async (req, res) => {
+router.post("/", middlewareAdmin,  async (req, res) => {
     try {
         const { title, content } = req.body;
         if (!title || !content) {
