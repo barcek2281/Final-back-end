@@ -6,5 +6,4 @@ const schemaAdmin = new mongoose.Schema({
     password: String,
 })
 
-
 module.exports = mongoose.model("admin", schemaAdmin)

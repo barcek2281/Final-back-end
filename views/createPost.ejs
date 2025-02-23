@@ -8,16 +8,17 @@
 </head>
 <body>
     <h1>Создать новый пост</h1>
-    <form action="/posts/create" method="POST">
+    <% if (error) { %>
+        <p><%= error %></p>
+    <%}%>
+    <form action="/posts/" method="POST">
         <label>Заголовок:</label>
-        <input type="text" name="title" required>
+        <input type="text" name="title" id="title" required>
 
         <label>Описание:</label>
-        <textarea name="description" required></textarea>
+        <textarea name="content" id="content" required></textarea>
 
-        <label>Автор:</label>
-        <input type="text" name="author" value="<%= user ? user.username : 'Аноним' %>" readonly>
-
+        <label>Author: <%= user ? user.login : 'Аноним' %></label>
         <button type="submit">Опубликовать</button>
     </form>
 
