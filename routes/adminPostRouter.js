@@ -36,7 +36,7 @@ router.get("/:id", middlewareAdmin, async (req, res) => {
         if (!post) {
             return res.render("post", {post: null, error:"cannot find post!"})
         }
-        res.render("post", {post: post, error:null})
+        res.render("postAdmin", {post: post, error:null})
     } catch (err) {
         console.error(" Ошибка получения поста:", err);
         res.status(500).json({ error: "Server error" });
@@ -52,7 +52,7 @@ router.post("/:id", middlewareAdmin, async (req, res) => {
             );
 
             if (!deletedPost) {
-                return res.render("post", {post: null, error:"cannot find post!"})
+                return res.render("postAdmin", {post: null, error:"cannot find post!"})
             }
             console.log(`post deleted: ${deletedPost.title}`);
         }else{
@@ -63,7 +63,7 @@ router.post("/:id", middlewareAdmin, async (req, res) => {
             );
 
             if (!updatedPost) {
-                return res.render("post", {post: null, error:"cannot find post!"})
+                return res.render("postAdmin", {post: null, error:"cannot find post!"})
             }
             console.log(`post updated: ${updatedPost.title}`);
         }

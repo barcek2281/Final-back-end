@@ -123,7 +123,7 @@
     <% } %>
 
     <!-- Create Post Form -->
-    <form action="/posts/" method="POST">
+    <form action="/admin/" method="POST">
         <label for="title">Заголовок:</label>
         <input type="text" name="title" id="title" required>
 
@@ -144,7 +144,7 @@
         <ul class="post-list">
             <% posts.forEach(post => { %>
                 <li class="post-item">
-                    <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
+                    <h3><a href="/admin/<%= post._id %>"><%= post.title %></a></h3>
                     <p><%= post.content %></p>
                     <small>Автор: <%= post.author ? post.author.login : 'Аноним' %> | Дата: <%= post.createdAt.toLocaleString() %></small>
                 </li>

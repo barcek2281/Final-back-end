@@ -66,26 +66,6 @@
                                     <h2><%= post.title %></h2>
                                     <p><%= post.content.substring(0, 150) %>...</p>
                                     <a href="/posts/<%= post._id %>" class="read-more">Read More</a>
-            
-                                    <!-- Comments Section Inside Each Post -->
-                                    <h3>Comments</h3>
-                                    <form action="/posts/<%= post._id %>/comment" method="POST">
-                                        <textarea name="text" id="text" required placeholder="Write your comment..."></textarea>
-                                        <button type="submit">Post Comment</button>
-                                    </form>
-                                    
-                                    <% if (post.comments && post.comments.length > 0) { %>
-                                        <% post.comments.forEach(comment => { %>
-                                            <div class="comment">
-                                                <strong><%= comment.author || "Anonim" %>:</strong>
-                                                <p><%= comment.text %></p>
-                                                <small><%= comment.date %></small>
-                                            </div>
-                                        <% }) %>
-                                    <% } else { %>
-                                        <p>No comments yet.</p>
-                                    <% } %>
-            
                                 </div> <!-- End of post-card -->
                             <% }) %>
                         <% } else { %>

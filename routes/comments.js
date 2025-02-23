@@ -5,7 +5,7 @@ const Comment = require("../model/comment")
 const middleware = require("../middleware/middleware");
 
 // Добавление комментария
-router.post('/:id/comment',middleware,  async (req, res) => {
+router.post('/:id/comment', middleware,  async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         if (!post) {
