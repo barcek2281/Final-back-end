@@ -1,5 +1,6 @@
 const express = require('express');
 const jwt = require("jsonwebtoken");
+const User = require("../model/user");
 
 const router = express.Router();
 const Post = require('../model/Post');
@@ -12,7 +13,11 @@ router.get("/", async (req, res) => {
         if (!token) {
             return res.render("index", { posts, user:  null });
         }
-        const user = jwt.verify(token, process.env.JWT_SECRET);
+        const token_jwt = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findById(token_jwt.id);
+        if (!user) {
+            return res.render("index", { posts, user:  null });
+        }
         res.render("index", { posts, user:  user });
 
     } catch (err) {
