@@ -118,7 +118,7 @@ nav .logo a {
     background: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
-    max-width: 600px;
+    max-width: 800px;
 }
 /* Main Section */
 .posts-container {
@@ -157,14 +157,7 @@ nav .logo a {
     color: #b0b0b0;
 }
 
-.post-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-}
+
 
 
 .read-more {
@@ -202,6 +195,7 @@ nav .logo a {
     text-align: center; /* Выравнивает текст по центру */
     color: white; /* Сделает текст белым для лучшей читаемости */
     width: 40%; /* Максимальная ширина блока */
+    margin: 0 auto; /* Центрирует сам контейнер */
 }
 
 .bout-content {
@@ -210,6 +204,7 @@ nav .logo a {
 
     width: 40%; /* Максимальная ширина блока */
     height: 100%;
+    margin: 0 auto; /* Центрирует сам контейнер */
 }
 .about-container {
     display: flex;
@@ -324,13 +319,7 @@ main {
 }
 
 /* Ошибки */
-.error-message {
-    background-color: #ff3b3b;
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
-    margin-bottom: 10px;
-}
+
 
 /* Ссылка на регистрацию */
 .register-link {
@@ -345,7 +334,316 @@ footer {
     background: #111;
     color: white;
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
     width: 100%;
     margin-top: auto; /* Футер всегда прижат к низу */
+}
+
+.post-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Затемненный блок */
+.post-content-wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.post-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Секция комментариев */
+.comments-section {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.comments-list {
+    list-style: none;
+    padding: 0;
+}
+
+.comment-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.comment-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Форма добавления комментария */
+.comment-form {
+    margin-top: 20px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    resize: none;
+}
+
+.comment-form button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.comment-form button:hover {
+    background-color: #0056b3;
+}
+
+
+        
+/* Контейнер для редактирования поста */
+.edit-post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: white;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.edit-post-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    width: 40%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Заголовок */
+.edit-post-content h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Форма */
+.edit-post-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-post-content label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #ffcc00;
+}
+
+/* Поля ввода */
+.edit-post-content input,
+.edit-post-content textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #666;
+    border-radius: 8px;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.edit-post-content input:focus,
+.edit-post-content textarea:focus {
+    border-color: #ffcc00;
+    outline: none;
+}
+
+/* Кнопки */
+.edit-post-content button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #ffcc00;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.edit-post-content button:hover {
+    background: #e6b800;
+}
+
+/* Кнопка удаления */
+.delete-btn {
+    background: #d9534f !important;
+    color: white !important;
+}
+
+.delete-btn:hover {
+    background: #c9302c !important;
+}
+
+/* Ссылка назад */
+.back-link {
+    display: block;
+    margin-top: 15px;
+    color: #ffcc00;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+
+.error-message {
+    background-color: #ff3b3b;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+/* Форма создания поста */
+.create-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.create-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+}
+
+.create-content h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.create-content label {
+    display: block;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.create-content input[type="text"],
+.create-content textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.create-content textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.create-content button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.create-content button:hover {
+    background-color: #45a049;
+}
+
+.create-content a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+
+
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.post-item {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+    max-width: 600px;
+    color: white;
+    margin: 0 auto 20px;
+}
+
+.post-item h3 {
+    margin-top: 0;
+    color: white;
+}
+
+.post-item p {
+    color: #ddd;
+    font-size: 16px;
+}
+
+.post-item small {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #bbb;
 }
