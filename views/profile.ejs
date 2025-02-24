@@ -6,7 +6,44 @@
     <title><%= user.login %> - Profile | GameMoon</title>
     <link rel="stylesheet" href="/public/style.css">
     <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
+    <style>
+        .rename-form button {
+            background-color: #644664;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(187, 30, 90, 0.7);
+        }
 
+        .rename-form button:hover {
+            background-color: #630063;
+            box-shadow: 0 0 20px rgb(133, 17, 133);
+        }
+
+        .stats-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: left;
+        }
+        .stats-section h2 {
+            color: white;
+        }
+        .stats-list {
+            list-style: none;
+            padding: 0;
+        }
+        .stats-list li {
+            padding: 8px;
+            font-size: 18px;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -19,7 +56,6 @@
                 <a href="/about">About</a>
                 <a href="/download">Download</a>
                 <a href="/index">News</a>
-    
                 <% if (user) { %>
                     <a href="/users/profile">Profile</a>
                     <a href="/auth/logout">Logout</a>
@@ -35,22 +71,42 @@
         <div class="bout-container">
             <div class="bout-content">
                 <section class="profile-section">
-                    <h1>Welcome, <%= user.login %></h1>
-                    <h3>Email:</h3>
-                    <p> <%= user.email %></p>
-
-                    <% if (error) { %> 
-                        <p class="error-message"><%= error %></p>
-                    <% } %>
-
-                    <div class="rename-form">
-                        <h2>Rename Your Username</h2>
-                        <form action="/users/profile/" method="POST">
-                            <label for="newLogin">New Username:</label>
-                            <input type="text" id="newLogin" name="newLogin" value="<%= user.login %>" required>
-                            <button type="submit">Change Username</button>
-                        </form>
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h1>Welcome, <%= user.login %></h1>
+                            <p class="email"><i class="fas fa-envelope"></i> <%= user.email %></p>
+                        </div>
+                
+                        <% if (error) { %> 
+                            <p class="error-message"><%= error %></p>
+                        <% } %>
+                
+                        <div class="rename-form">
+                            <h2>Rename Your Username</h2>
+                            <form action="/users/profile/" method="POST">
+                                <div class="input-group">
+                                    <label for="newLogin">New Username:</label>
+                                    <input type="text" id="newLogin" name="newLogin" value="<%= user.login %>" required>
+                                </div>
+                                <button type="submit" class="btn-rename">Change Username</button>
+                            </form>
+                        </div>
                     </div>
+                </section>
+                
+
+                <section class="stats-section">
+                    <h2>Profile Statistics</h2>
+                    <ul>
+                        <li>Reputation: 100 </li>
+                        <li>Friends: 10 </li>
+                        <li>Subscriptions: 5 </li>
+                        <li>Achievements: 3 </li>
+                        <li>Games Played: 25 </li>
+                        <li>Time Spent in Game: 120h </li>
+                        <li>Badges Collected: 7 </li>
+                    </ul>
+                    
                 </section>
             </div>
         </div>
