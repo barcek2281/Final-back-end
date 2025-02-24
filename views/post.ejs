@@ -17,7 +17,7 @@
                 <a href="/about">About</a>
                 <a href="/download">Download</a>
                 <a href="/index">News</a>
-    
+
                 <% if (user) { %>
                     <a href="/users/profile">Profile</a>
                     <a href="/auth/logout">Logout</a>
@@ -25,44 +25,45 @@
                     <a href="/auth/login">Login</a>
                     <a href="/auth/register">Register</a>
                 <% } %>
-                
             </div>
         </nav>
     </header>
 
     <main class="post-container">
-        <article class="post-detail">
-            <h1 class="post-title"><%= post.title %></h1>
-            <p class="post-content"><%= post.content %></p>
-        </article>
+        <div class="post-content-wrapper">
+            <article class="post-detail">
+                <h1 class="post-title"><%= post.title %></h1>
+                <p class="post-content"><%= post.content %></p>
+            </article>
 
-        <!-- Display comments section -->
-        <section class="comments-section">
-            <h2>Comments</h2>
+            <!-- Секция комментариев -->
+            <section class="comments-section">
+                <h2>Comments</h2>
 
-            <% if (comments && comments.length > 0) { %>
-                <ul class="comments-list">
-                    <% comments.forEach(function(comment) { %>
-                        <li class="comment-item">
-                            <p class="comment-author"><strong><%= comment.author %></strong></p>
-                            <p class="comment-body"><%= comment.text %></p>
-                        </li>
-                    <% }); %>
-                </ul>
-            <% } else { %>
-                <p>No comments yet. Be the first to comment!</p>
-            <% } %>
+                <% if (comments && comments.length > 0) { %>
+                    <ul class="comments-list">
+                        <% comments.forEach(function(comment) { %>
+                            <li class="comment-item">
+                                <p class="comment-author"><strong><%= comment.author %></strong></p>
+                                <p class="comment-body"><%= comment.text %></p>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } else { %>
+                    <p>No comments yet. Be the first to comment!</p>
+                <% } %>
 
-            <!-- Add comment form (only if user is logged in) -->
-            <% if (user) { %>
-                <form action="/posts/<%= post._id %>/comment" method="POST">
-                    <textarea name="text" placeholder="Add a comment" required></textarea>
-                    <button type="submit">Post Comment</button>
-                </form>
-            <% } else { %>
-                <p>Please <a href="/auth/login">log in</a> to add a comment.</p>
-            <% } %>
-        </section>
+                <!-- Форма добавления комментария (если пользователь авторизован) -->
+                <% if (user) { %>
+                    <form class="comment-form" action="/posts/<%= post._id %>/comment" method="POST">
+                        <textarea name="text" placeholder="Add a comment" required></textarea>
+                        <button type="submit">Post Comment</button>
+                    </form>
+                <% } else { %>
+                    <p>Please <a href="/auth/login">log in</a> to add a comment.</p>
+                <% } %>
+            </section>
+        </div>
     </main>
 
     <footer class="footer">
