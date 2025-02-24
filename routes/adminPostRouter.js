@@ -29,7 +29,6 @@ router.post("/", middlewareAdmin,  async (req, res) => {
     }
 });
 
-
 router.get("/:id", middlewareAdmin, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
@@ -39,7 +38,7 @@ router.get("/:id", middlewareAdmin, async (req, res) => {
         res.render("postAdmin", {post: post, error:null})
     } catch (err) {
         console.error(" Ошибка получения поста:", err);
-        res.status(500).json({ error: "Server error" });
+        res.render("postAdmin", {post:null, error:"not found post"});
     }
 });
 
@@ -70,7 +69,7 @@ router.post("/:id", middlewareAdmin, async (req, res) => {
         res.redirect(".")
     } catch (err) {
         console.error(" Ошибка обновления поста:", err);
-        res.status(500).json({ error: "Server error" });
+        return res.render("postAdmin", {post: null, error:"cannot find post!"})
     }
 });
 
