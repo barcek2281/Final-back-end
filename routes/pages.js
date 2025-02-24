@@ -16,11 +16,6 @@ router.get("/download", (req, res) => {
 // Changelog + Comments
 router.get("/changelog", async (req, res) => {
     try {
-        const updates = [
-            { title: "Patch 1.1", description: "Fixed bugs, improved UI", date: "2025-02-20" },
-            { title: "Patch 1.2", description: "New game mode added", date: "2025-02-25" }
-        ];
-
         const comments = await Comment.find().sort({ createdAt: -1 });
 
         res.render("changelog", { user: req.user, updates, comments });
