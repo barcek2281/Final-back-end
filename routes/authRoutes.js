@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
 const validator = require("validator");
+const middlewareAdmin = require("../middleware/middlewareAdmin");
 
 const router = express.Router();
 
@@ -62,7 +63,7 @@ router.post('/register', async (req, res) => {
     res.redirect("/")
 });
 
-router.post('/adminRegister', async (req, res) => {
+router.post('/adminRegister', middlewareAdmin, async (req, res) => {
     const {login, email, password} = req.body;
     if (!login || !email || !password) {
         return res.render("register", {error: "All fields are required"});
