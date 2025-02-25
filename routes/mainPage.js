@@ -21,6 +21,12 @@ router.get("/", async (req, res) => {
         res.render("index", { posts, user:  user });
 
     } catch (err) {
+        if (err.message == "jwt expired") {
+
+            res.clearCookie("token")
+            res.redirect("/");
+            return
+        }
         console.error("❌ Ошибка загрузки постов:", err.message);
         res.status(500).render("error", { message: "Ошибка сервера. Попробуйте позже." });
     }
